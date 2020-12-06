@@ -1,0 +1,47 @@
+let mongoose = require('mongoose');
+let accidentSchema = mongoose.Schema({
+    //_id: String, //mongoose.Schema.Types.ObjectId,
+    severity: String,
+    start: String,
+    end: String,
+    lat: String,
+    lng: String,
+    lat: String,
+    lng: String,
+    distance: String,
+    description: String,
+    country: String,
+    state: String,
+    county: String,
+    city: String,
+    number: String,
+    street: String,
+    side: String,
+    temperature: String,
+    wind_chill: String,
+    humidity: String,
+    pressure: String,
+    visibility: String,
+    wind_direct: String,
+    wind_speed: String,
+    precipation: String,
+    condition: String,
+    amenity: String,
+    bump: String,
+    crossing: String,
+    give_way: String,
+    junction: String,
+    no_exit: String,
+    railway: String,
+    roundabout: String,
+    station: String,
+    stop: String,
+    traffic_calming: String,
+    traffic_signal: String,
+    turning_loop: String,
+    day_period: String
+});
+
+let Accident = mongoose.model('Accident', accidentSchema);
+
+module.exports = Accident;
