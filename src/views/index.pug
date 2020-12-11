@@ -1,8 +1,22 @@
 extends layout
 
 block content
-  h1 Database content
-  p  #{title}
-  div#map.map
-  script(type="text/javascript" src="/public/javascripts/map.js")
+  div
+    h2 Choose state, year and month of accidents:
+    div
+      select.w3-border.w3-select(style="width:25%", id="state")
+        each val, index in states
+          option(value=val.id)=val.name
+      select.w3-border.w3-select(style="width:25%", id="year")
+        each val, index in years
+          option(value=val)=val
+      select.w3-border.w3-select(style="width:25%", id="month")
+        each val, index in months
+          option(value=val.id)=val.name
+      button.w3-button.w3-purple(style="width:25%", onclick='ajaxPut(document.URL)') Load
+  block view
+    div#map.map
+    button.w3-button.w3-purple(style="width:25%", onclick='location.href="/table"') Table
+    script(type="text/javascript" src="/public/javascripts/map.js")
+
 

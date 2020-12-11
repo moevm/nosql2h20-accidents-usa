@@ -1,0 +1,9 @@
+extends index
+
+block view
+    table.w3-table-all(id="content")
+    div.w3-bar
+        button.w3-button.w3-purple.w3-bar-item(style="width:50%", onclick='prev()') Previous
+        button.w3-button.w3-deep-purple.w3-bar-item(style="width:50%", onclick='next()') Next
+    button.w3-button.w3-border.w3-border-black(onclick='location.href="/map"') Map
+    script(type="text/javascript" src="/public/javascripts/table.js")
