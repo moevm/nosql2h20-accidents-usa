@@ -1,17 +1,15 @@
-//const ol = require('ol');
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
 
-let parseCSV = require('./parseCSV');
+//let parseCSV = require('./parseCSV');
 let getData = require('./getData');
 
 let states = JSON.parse(JSON.stringify(require('./data/states')));
 let months = JSON.parse(JSON.stringify(require('./data/months')));
-//var to make sure csv parsed and loaded to db. used in router
-//setLoaded - function to change this variable from another file
-let _isLoaded = false;
-parseCSV();
+//do something with this
+let _isLoaded = true;
+//parseCSV();
 
 //properties for server need
 app.use(bodyParser.json());
@@ -62,10 +60,10 @@ app.put("/*/giveMePoints", (req,res) => {
 });
 
 app.listen(3000);
-
+/*
 exports.setLoaded = function(isLoaded){
     _isLoaded = isLoaded;
 };
-
+*/
 
 

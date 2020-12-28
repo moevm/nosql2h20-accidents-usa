@@ -3,7 +3,7 @@ const path = require('path');
 const csv = require('fast-csv');
 const mongoose = require('mongoose');
 let Accident = require('./accident');
-let app = require('./app');
+//let app = require('./app');
 
 
 function parseCSV() {
@@ -22,7 +22,7 @@ function parseCSV() {
         if (result) {
             console.log("Your collection is full already.");
             mongoose.disconnect();
-            app.setLoaded(true);
+            //app.setLoaded(true);
             return;
         }
         console.time();
@@ -32,7 +32,7 @@ function parseCSV() {
 
         let data = [];
         csvStream
-            .pipe(csv.parse({headers: true/*, maxRows: 100*/})
+            .pipe(csv.parse({headers: true/*, maxRows: 600*/})
                 .transform(data => ({
                     time: {
                         start: data.Start_Time,
@@ -57,7 +57,7 @@ function parseCSV() {
                     block++;
                     Accident.insertMany(data);
                     data = [];
-                    //console.log("Block #", block,"/ 7027");
+                    console.log("Block #", block,"/ 7027");
                 }
             })
             .on('end', rowCount => {
@@ -74,18 +74,7 @@ function parseCSV() {
     })
 }
 
-//parseCSV();
+parseCSV();
 
 
 module.exports = parseCSV;
-/*
-//'2016-02-08 05:46:00'.replace(' ','T'));
-str = '2016-02-08 05:46:00'.replace(' ','T')
-console.log(Date.parse('2016-02-08 05:46:00'));
-//console.log(str.substr(0,10)+'T'+str.substr(11,8))
-console.log(str);
-let date = new Date(str);
-console.log(date)
-console.log(date.toISOString())
-console.log(date.toLocaleDateString())
- */
