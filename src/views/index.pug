@@ -17,6 +17,11 @@ block content
   block view
     div#map.map
     button.w3-button.w3-purple(style="width:25%", onclick='location.href="/table"') Table
+    button.w3-button.w3-red(style="width:25%", onclick='location.href="/Download"') Download
+    form(class="w3-container" action='/map' method='POST' enctype='multipart/form-data')
+     input(class="w3-input" style="width:25%" type='file' name='file')
+     input(class="w3-input" style="width:25%" type='submit')
+
     script(type="text/javascript" src="/public/javascripts/map.js")
 
 
