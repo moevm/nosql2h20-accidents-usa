@@ -8,5 +8,5 @@ RUN npm i
 
 COPY . .
 
-EXPOSE 80
-CMD node parseCSV && npm start
+EXPOSE 3000
+CMD node init && npm start
