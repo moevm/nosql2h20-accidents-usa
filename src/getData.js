@@ -4,7 +4,7 @@ let Accident = require('./accident');
 function getData(year, month, state, callback) {
     let start = new Date(Number(year),Number(month)).toISOString();
     let end = new Date(Number(year),Number(month)+1).toISOString();
-    mongoose.connect('mongodb://localhost:27017/accidents', {useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect('mongodb://mongo:27017/accidents', {useNewUrlParser: true, useUnifiedTopology: true});
     Accident.find({"time.start": {$gte: start, $lt: end}, "state": state},'start.lat start.lng state time.start', function (err, result) {
         mongoose.disconnect();
         callback(err,result);
