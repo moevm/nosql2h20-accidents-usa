@@ -4,14 +4,11 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const path = require('path');
-//let parseCSV = require('./parseCSV');
 let getData = require('./getData');
 
 let states = JSON.parse(JSON.stringify(require('./data/states')));
 let months = JSON.parse(JSON.stringify(require('./data/months')));
-//do something with this
 let _isLoaded = true;
-//parseCSV();
 
 //properties for server need
 app.use(fileUpload({}));
@@ -58,7 +55,7 @@ app.get("/Download", (req,res) => {
 app.post('/map', function(req, res) {
     req.files.file.mv(path.resolve(__dirname,'data',req.files.file.name));
     res.end(req.files.file.name);
-    //parseCSV('data/'+req.files.file.name);
+    parseCSV(path.resolve('data', req.files.file.name));
     fs.readFile(path.resolve(__dirname,'data',req.files.file.name), "utf8",
         function(error,data){
             if(error) throw error; // если возникла ошибка
