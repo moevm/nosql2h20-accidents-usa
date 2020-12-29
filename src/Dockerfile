@@ -9,4 +9,5 @@ RUN npm i
 COPY . .
 
 EXPOSE 80
+CMD node parseCSV
 ENTRYPOINT [ "npm", "start" ]
