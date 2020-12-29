@@ -6,29 +6,15 @@ let Accident = require('./accident');
 //let app = require('./app');
 
 
-function parseCSV() {
+function parseCSV(file) {
     //connection
     mongoose.connect('mongodb://localhost:27017/accidents', {useNewUrlParser: true, useUnifiedTopology: true});
     mongoose.set('useCreateIndex', true);   //without it warning occurs
-    //checker (use for check if this function worked before)
-    let checkerSchema = mongoose.Schema({
-        isFull: {
-            type: Boolean,
-            unique: true
-        }});
-    const Check = mongoose.model('Check',checkerSchema);
-    Check.findOne({isFull: true}, function(err,result){
-        if(err) return console.log(err);
-        if (result) {
-            console.log("Your collection is full already.");
-            mongoose.disconnect();
-            //app.setLoaded(true);
-            return;
-        }
+   
         console.time();
         let counter = 0;
         let block = 0;
-        let csvStream = fs.createReadStream(path.resolve(__dirname, 'data', 'US_Accidents_June20.csv'));
+        let csvStream = fs.createReadStream(path.resolve(__dirname, 'data', file));
 
         let data = [];
         csvStream
@@ -61,20 +47,13 @@ function parseCSV() {
                 }
             })
             .on('end', rowCount => {
-                Accident.insertMany(data).then(() => {
-                    let success = new Check({ isFull: true });
-                    success.save().then(() => {
-                        mongoose.disconnect();
-                        console.log('success')
-                        console.timeEnd();
-                    });
+               Accident.insertMany(data).then(() => {
+                    mongoose.disconnect();
+                    console.log('success')
+                    console.timeEnd();
                 });
                 console.log(`Parsed ${rowCount} rows`);
             });
-    })
 }
-
-parseCSV();
-
 
 module.exports = parseCSV;
