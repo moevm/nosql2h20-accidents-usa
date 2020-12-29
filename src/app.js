@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const path = require('path');
+let parseCSV = require('./parseCSV');
 let getData = require('./getData');
 
 let states = JSON.parse(JSON.stringify(require('./data/states')));
