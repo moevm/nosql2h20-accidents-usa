@@ -8,7 +8,7 @@ let Accident = require('./accident');
 
 function parseCSV(file) {
     //connection
-    mongoose.connect('mongodb://localhost:27017/accidents', {useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect('mongodb://mongo:27017/accidents', {useNewUrlParser: true, useUnifiedTopology: true});
     mongoose.set('useCreateIndex', true);   //without it warning occurs
    
         console.time();
