@@ -1,2 +1,2 @@
 let parseCSV = require('./parseCSV');
-parseCSV('ex10^4.csv');
+parseCSV('US_Accidents_June20.csv');
